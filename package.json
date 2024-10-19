@@ -1,0 +1,15 @@
+{
+  "name": "monit-collector",
+  "version": "0.1",
+  "description": "Centralized Monit status at a glance with this simple ExpressJS app",
+  "author": "David Horton <https://github.com/DavesCodeMusings>",
+  "main": "collector.js",
+  "scripts": {
+    "start": "node collector.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "express": "^4.21.1",
+    "fast-xml-parser": "^4.5.0"
+  }
+}
