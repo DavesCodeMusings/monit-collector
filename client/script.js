@@ -77,7 +77,9 @@ function populateTable() {
       clone.querySelector("#hostname").innerHTML = `<a href="${hostMonit}" target="_new">${hostname}</a>`
       clone.querySelector("#healthy-count").innerHTML = `${healthyCount}`
       clone.querySelector("#degraded-count").innerHTML = `${degradedCount}`
-      clone.querySelector("#details").innerHTML = hostLastUpdate
+      clone.querySelector("#details").innerHTML = hostLastUpdate.toLocaleDateString()
+        + " "
+        + hostLastUpdate.toLocaleTimeString()
       if (degradedCount > 0) {
         clone.querySelector("#host-id").classList.add("degraded")
           clone.querySelector("#details").innerHTML += "<br>"
