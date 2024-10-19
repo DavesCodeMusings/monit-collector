@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="tray-full-24px.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <title>Monit Collector</title>
+</head>
+
+<body onload="getCollection()">
+  <h1 style="text-align: center;">Monit Collector</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left;">Hostname</th>
+        <th colspan="2" style="text-align: center;">Services</th>
+        <th style="text-align: center;">Last Status</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <template id="table-row">
+    <tr id="host-id">
+      <td style="text-align: left;"><span id="hostname"></span></td>
+      <td style="text-align: right;"><span id="healthy-count"></span> &uarr;</td>
+      <td style="text-align: right;"><span id="degraded-count"></span> &darr;</td>
+      <td style="text-align: right;"><span id="details"></span></td>
+    </tr>
+  </template>
+</body>
+
+</html>
