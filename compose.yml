@@ -1,0 +1,10 @@
+services:
+    collector:
+        build:
+            context: .
+        image: davescodemusings/monit-collector
+        container_name: monit_collector
+        hostname: collector
+        restart: unless-stopped
+        ports:
+          - 8008:8008
