@@ -1,6 +1,3 @@
-# Monit Collector
-Gather status from multiple Monit instances.
-
 ## What is it?
 monit-collector is a tool to gather Monit statuses from multiple hosts and make the data available on a dashboard or through a REST API.
 
