@@ -38,7 +38,7 @@ jobs:
               uses: docker/build-push-action@v5
               with:
                   context: .
-                  platforms: linux/amd64,linux/arm64,linux/arm/v7
+                  platforms: linux/amd64,linux/arm64
                   push: true
                   tags: |
                       davescodemusings/monit-collector:latest
@@ -47,5 +47,3 @@ jobs:
                       ghcr.io/davescodemusings/monit-collector:x86
                       davescodemusings/monit-collector:arm64
                       ghcr.io/davescodemusings/monit-collector:arm64
-                      davescodemusings/monit-collector:armv7
-                      ghcr.io/davescodemusings/monit-collector:armv7
