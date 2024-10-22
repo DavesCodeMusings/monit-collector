@@ -1,6 +1,7 @@
+[![Build](https://github.com/DavesCodeMusings/monit-collector/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/DavesCodeMusings/monit-collector/actions/workflows/docker-image.yml)
+
 ## What is it?
 monit-collector is a tool to gather Monit statuses from multiple hosts and make the data available on a dashboard or through a REST API.
-
 
 ## How do I run it?
 Docker Compose is the easiest way.
