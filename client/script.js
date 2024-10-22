@@ -83,9 +83,10 @@ function populateTable() {
       if (degradedCount > 0) {
         clone.querySelector("#host-id").classList.add("degraded")
           clone.querySelector("#details").innerHTML += "<br>"
-        svcDegraded.sort().forEach(svcName => {
-          clone.querySelector("#details").innerHTML += `&#x26A0; ${svcName} `
-        })
+          clone.querySelector("#details").innerHTML += `${svcDegraded.sort().join()}`
+      }
+      else {
+        clone.querySelector("#host-id").classList.add("okay")
       }
       if (staleHost) {
         clone.querySelector("#host-id").classList.add("stale")
