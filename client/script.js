@@ -33,15 +33,24 @@ function populateTable() {
     hosts = Object.keys(collection.hosts).sort()
     hosts.forEach(hostId => {
 
-      // Server link to get more detail.
-      let hostMonit = collection.hosts[hostId].monit.server.httpd.address
-        + ":"
-        + collection.hosts[hostId].monit.server.httpd.port
-      if (collection.hosts[hostId].monit.server.httpd.ssl) {
-        hostMonit = "https://" + hostMonit
-      }
-      else {
-        hostMonit = "http://" + hostMonit
+      // Each server has its own Monit dashboard
+      let hostMonitURL = ""
+      if (collection.hosts[hostId].monit.server.httpd) {
+        if (collection.hosts[hostId].monit.server.httpd.ssl) {
+          hostMonitURL += "https://"
+        }
+        else {
+          hostMonitURL += "http://"
+        }
+        if (collection.hosts[hostId].monit.server.credentials) {
+          hostMonitURL += collection.hosts[hostId].monit.server.credentials.username
+            + ":"
+            + collection.hosts[hostId].monit.server.credentials.password
+            + "@"
+        }
+        hostMonitURL += collection.hosts[hostId].monit.server.httpd.address
+          + ":"
+          + collection.hosts[hostId].monit.server.httpd.port
       }
 
       // Monit's polling interval is used to tune the auto-refresh
@@ -74,7 +83,7 @@ function populateTable() {
       const template = document.querySelector("#table-row")
       const clone = template.content.cloneNode(true)
       let hostname = collection.hosts[hostId].monit.server.localhostname
-      clone.querySelector("#hostname").innerHTML = `<a href="${hostMonit}" target="_new">${hostname}</a>`
+      clone.querySelector("#hostname").innerHTML = `<a href="${hostMonitURL}" target="_new">${hostname}</a>`
       clone.querySelector("#healthy-count").innerHTML = `${healthyCount}`
       clone.querySelector("#degraded-count").innerHTML = `${degradedCount}`
       clone.querySelector("#details").innerHTML = hostLastUpdate.toLocaleDateString()
