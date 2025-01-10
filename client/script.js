@@ -2,6 +2,42 @@ var collection = {}
 refreshIntervalSec = null
 refreshIntervalId = null
 
+function ipv4Compare(a, b) {
+  let aOctets = a.split('.')
+  let bOctets = b.split('.')
+  if (aOctets.length !== 4 || bOctets.length !==4) {
+    throw("InvalidIPv4Address")
+  }
+
+  if (parseInt(aOctets[0]) > parseInt(bOctets[0])) {
+    return 1
+  }
+  else if (parseInt(aOctets[0]) < parseInt(bOctets[0])) {
+    return -1
+  }
+  else if (parseInt(aOctets[1]) > parseInt(bOctets[1])) {
+    return 1
+  }
+  else if (parseInt(aOctets[1]) < parseInt(bOctets[1])) {
+    return -1
+  }
+  else if (parseInt(aOctets[2]) > parseInt(bOctets[2])) {
+    return 1
+  }
+  else if (parseInt(aOctets[2]) < parseInt(bOctets[2])) {
+    return -1
+  }
+  else if (parseInt(aOctets[3]) > parseInt(bOctets[3])) {
+    return 1
+  }
+  else if (parseInt(aOctets[3]) < parseInt(bOctets[3])) {
+    return -1
+  }
+  else {
+    return 0
+  }
+}
+
 async function getCollection() {
   url = new URL("/collector", document.location).href
   console.debug("Fetching collection from:", url)
@@ -30,7 +66,7 @@ function populateTable() {
     suggestRefreshInterval(300)
   }
   else {
-    hosts = Object.keys(collection.hosts).sort()
+    hosts = Object.keys(collection.hosts).sort(ipv4Compare)
     hosts.forEach(hostId => {
 
       // Each server has its own Monit dashboard
